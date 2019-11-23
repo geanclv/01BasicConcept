@@ -20,7 +20,7 @@ public class ShareActivity extends AppCompatActivity {
 
     private EditText txtShare;
     private EditText txtSharePhone;
-    private ImageButton btnShareHelp;
+    private ImageButton btnShareWeb;
     private ImageButton btnSharePhone;
     private ImageButton btnShareCamera;
 
@@ -33,6 +33,7 @@ public class ShareActivity extends AppCompatActivity {
 
         initControls();
 
+        /* Botòn para llamadas telefónicas */
         btnSharePhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +89,20 @@ public class ShareActivity extends AppCompatActivity {
                 }
             }
         });
+
+        /* Botón para abrir navegador web con url */
+        btnShareWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = txtShare.getText().toString();
+                if (!url.isEmpty()) {
+                    Intent intentWeb = new Intent();
+                    intentWeb.setAction(Intent.ACTION_VIEW);
+                    intentWeb.setData(Uri.parse("http://" + url));
+                    startActivity(intentWeb);
+                }
+            }
+        });
     }
 
     /*Método para */
@@ -133,7 +148,7 @@ public class ShareActivity extends AppCompatActivity {
     private void initControls() {
         txtShare = findViewById(R.id.txtShare);
         txtSharePhone = findViewById(R.id.txtSharePhone);
-        btnShareHelp = findViewById(R.id.btnShareHelp);
+        btnShareWeb = findViewById(R.id.btnShareWeb);
         btnSharePhone = findViewById(R.id.btnSharePhone);
         btnShareCamera = findViewById(R.id.btnShareCamera);
     }

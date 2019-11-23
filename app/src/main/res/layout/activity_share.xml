@@ -14,8 +14,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toStartOf="@+id/btnShareHelp"
+        app:layout_constraintEnd_toStartOf="@+id/btnShareWeb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSharePhone" />
 
@@ -43,7 +42,7 @@
         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
     <ImageButton
-        android:id="@+id/btnShareHelp"
+        android:id="@+id/btnShareWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
