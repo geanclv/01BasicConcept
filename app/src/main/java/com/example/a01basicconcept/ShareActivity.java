@@ -1,10 +1,12 @@
 package com.example.a01basicconcept;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -25,6 +27,7 @@ public class ShareActivity extends AppCompatActivity {
     private ImageButton btnShareCamera;
 
     private final static int PHONE_CALL_CODE = 99;
+    private final static int PICTURE_FROM_CAMERA = 88;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,11 +125,41 @@ public class ShareActivity extends AppCompatActivity {
                     //Teléfono 2, no necesita permisos
                     Intent intentPhone = new Intent(Intent.ACTION_DIAL,
                             Uri.parse("tel:123"));
-
                     //startActivity(intentEmailFull);
                 }
             }
         });
+
+        btnShareCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Abrir la cámara
+                Intent intentCamara = new Intent("android.media.action.IMAGE_CAPTURE");
+                //startActivity(intentCamara);
+                /*Abre la cámara y luego de una foto devuelve la foto a la app,
+                se complementa con el método onActivityResult*/
+                startActivityForResult(intentCamara, PICTURE_FROM_CAMERA);
+            }
+        });
+    }
+
+    /*Método complementario para abrir la galería de imágenes*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Toast.makeText(this, "onac", Toast.LENGTH_LONG).show();
+        switch (requestCode) {
+            case PICTURE_FROM_CAMERA:
+                if (resultCode == Activity.RESULT_OK) {
+                    String resultado = data.toUri(0); //devuelve la imagen a la cual le tomamos foto
+                    Toast.makeText(this, "Resultado: " + resultado, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Error mostrando galeria", Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+                break;
+        }
     }
 
     /*Método para */
