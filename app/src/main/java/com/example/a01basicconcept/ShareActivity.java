@@ -109,17 +109,21 @@ public class ShareActivity extends AppCompatActivity {
                     Intent intentEmail = new Intent(Intent.ACTION_SENDTO,
                             Uri.parse("mailto:" + email));
                     //Email completo
-                    Intent intentEmailFull = new Intent(Intent.ACTION_SEND,
-                            Uri.parse(email));
-                    intentEmailFull.setType("plain/text");
+                    Intent intentEmailFull = new Intent(Intent.ACTION_SEND);
+                    intentEmailFull.setType("message/rfc822");
                     intentEmailFull.putExtra(Intent.EXTRA_SUBJECT, "titulo");
                     intentEmailFull.putExtra(Intent.EXTRA_TEXT, "cuerpo del mail");
-                    intentEmailFull.putExtra(Intent.EXTRA_EMAIL, new String[]{email, email});
+                    intentEmailFull.putExtra(Intent.EXTRA_EMAIL,
+                            new String[]{email, "gean@hotmail.com"});
+                    intentEmailFull.putExtra(Intent.EXTRA_CC,
+                            new String[]{"gean_lv@hotmail.com", "gean@hotmail.com"});
+                    /*Pide al usuario que seleccione que app abrir para completar la acción*/
+                    startActivity(Intent.createChooser(intentEmailFull, "Elige cliente email"));
                     //Teléfono 2, no necesita permisos
                     Intent intentPhone = new Intent(Intent.ACTION_DIAL,
                             Uri.parse("tel:123"));
 
-                    startActivity(intentPhone);
+                    //startActivity(intentEmailFull);
                 }
             }
         });
