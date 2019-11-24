@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity
 
         initControls();
 
+        /*Cambiando el icono de la aplicación*/
+        ponerIconoEnActionBar();
+
         /*Forma 1 de escribir acciones de un boton*/
         /*btnMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +70,13 @@ public class MainActivity extends AppCompatActivity
         String mensaje = txtMain.getText().toString();
         showToast(this, mensaje);
     }*/
+
+    private void ponerIconoEnActionBar(){
+        getSupportActionBar().setDisplayShowHomeEnabled(true); //fuerza el icono en el action bar
+        getSupportActionBar().setIcon(R.drawable.ic_satelite_32); //icono del action bar
+        //para cambiar el icono de la aplicación debemos ir al Manifest sección "icon"
+        //para cambiar el nombre de la aplicación debemos ir al Manifest sección "label"
+    }
 
     private void showToast(Context context, String mensaje) {
         Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show();

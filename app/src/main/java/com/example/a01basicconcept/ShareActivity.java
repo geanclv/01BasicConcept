@@ -36,6 +36,9 @@ public class ShareActivity extends AppCompatActivity {
 
         initControls();
 
+        /*Activa la flecha para ir atrás en el ActionBar*/
+        flechaAtrasEnActionBar();
+
         /* Botòn para llamadas telefónicas */
         btnSharePhone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +197,12 @@ public class ShareActivity extends AppCompatActivity {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 break;
         }
+    }
+
+    /*Activa la flecha para ir atrás en el ActionBar*/
+    private void flechaAtrasEnActionBar() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Además, debemos ir al Manifest e indicar cual es el Activity al que se "va atrás"
     }
 
     /*Método para validar si algún permiso ya ha sido dado por el usuario*/

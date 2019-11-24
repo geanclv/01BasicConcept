@@ -22,6 +22,12 @@ public class SecondActivity extends AppCompatActivity {
 
         initControls();
 
+        /*Cambiando el icono de la aplicación*/
+        ponerIconoEnActionBar();
+
+        /*Activa la flecha para ir atrás en el ActionBar*/
+        flechaAtrasEnActionBar();
+
         /*Tomando los datos enviados por el Intent*/
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && !bundle.isEmpty()) {
@@ -40,6 +46,19 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void ponerIconoEnActionBar(){
+        getSupportActionBar().setDisplayShowHomeEnabled(true); //fuerza el icono en el action bar
+        getSupportActionBar().setIcon(R.drawable.ic_satelite_32); //icono del action bar
+        //para cambiar el icono de la aplicación debemos ir al Manifest sección "icon"
+        //para cambiar el nombre de la aplicación debemos ir al Manifest sección "label"
+    }
+
+    /*Activa la flecha para ir atrás en el ActionBar*/
+    private void flechaAtrasEnActionBar() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Además, debemos ir al Manifest e indicar cual es el Activity al que se "va atrás"
     }
 
     private void initControls(){
