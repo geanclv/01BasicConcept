@@ -99,7 +99,27 @@ public class ShareActivity extends AppCompatActivity {
                     Intent intentWeb = new Intent();
                     intentWeb.setAction(Intent.ACTION_VIEW);
                     intentWeb.setData(Uri.parse("http://" + url));
-                    startActivity(intentWeb);
+
+                    /* Otros tipos de Intent */
+                    //Abrir app de contactos
+                    Intent intentContacts = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("content://contacts/people"));
+                    //Email rápido
+                    String email = "geanclv@gmail.com";
+                    Intent intentEmail = new Intent(Intent.ACTION_SENDTO,
+                            Uri.parse("mailto:" + email));
+                    //Email completo
+                    Intent intentEmailFull = new Intent(Intent.ACTION_SEND,
+                            Uri.parse(email));
+                    intentEmailFull.setType("plain/text");
+                    intentEmailFull.putExtra(Intent.EXTRA_SUBJECT, "titulo");
+                    intentEmailFull.putExtra(Intent.EXTRA_TEXT, "cuerpo del mail");
+                    intentEmailFull.putExtra(Intent.EXTRA_EMAIL, new String[]{email, email});
+                    //Teléfono 2, no necesita permisos
+                    Intent intentPhone = new Intent(Intent.ACTION_DIAL,
+                            Uri.parse("tel:123"));
+
+                    startActivity(intentPhone);
                 }
             }
         });
